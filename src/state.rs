@@ -1,6 +1,7 @@
 use amethyst::{
     assets::{AssetStorage, Loader},
     core::transform::Transform,
+    ecs::{Component, DenseVecStorage },
     input::{get_key, is_close_requested, is_key_down, VirtualKeyCode},
     prelude::*,
     renderer::{Camera, ImageFormat, SpriteRender, SpriteSheet, SpriteSheetFormat, Texture},
@@ -8,6 +9,29 @@ use amethyst::{
 };
 
 use log::info;
+
+pub const PLAYER_HEIGHT: f32 = 40.0;
+pub const PLAYER_WIDTH: f32 = 40.0;
+
+pub struct Player {
+    pub speed: f32, 
+    pub width: f32,
+    pub height: f32,
+}
+
+impl Player {
+    fn new(speed: f32) -> Player {
+        Player {
+            speed,
+            width: PLAYER_WIDTH,
+            height: PLAYER_HEIGHT,
+      }
+    }
+}
+
+impl Component for Player {
+    type Storage = DenseVecStorage<Self>;
+}
 
 pub struct MyState;
 
@@ -26,9 +50,13 @@ impl SimpleState for MyState {
         // Place the camera
         init_camera(world, &dimensions);
 
+        world.register::<Player>();
+
         // Load our sprites and display them
         let sprites = load_sprites(world);
-        init_sprites(world, &sprites, &dimensions);
+        // init_sprites(world, &sprites, &dimensions);
+
+        init_player(world, &sprites, &dimensions);
     }
 
     fn handle_event(
@@ -109,22 +137,14 @@ fn load_sprites(world: &mut World) -> Vec<SpriteRender> {
         .collect()
 }
 
-fn init_sprites(world: &mut World, sprites: &[SpriteRender], dimensions: &ScreenDimensions) {
-    for (i, sprite) in sprites.iter().enumerate() {
-        // Center our sprites around the center of the window
-        let x = (i as f32 - 1.) * 100. + dimensions.width() * 0.5;
-        let y = (i as f32 - 1.) * 100. + dimensions.height() * 0.5;
-        let mut transform = Transform::default();
-        transform.set_translation_xyz(x, y, 0.);
+fn init_player(world: &mut World, sprites: &[SpriteRender], dimensions: &ScreenDimensions) {
+    let mut transform = Transform::default();
+    transform.set_translation_xyz(dimensions.width() * 0.5, dimensions.height() * 0.5, 0.);
 
-        // Create an entity for each sprite and attach the `SpriteRender` as
-        // well as the transform. If you want to add behaviour to your sprites,
-        // you'll want to add a custom `Component` that will identify them, and a
-        // `System` that will iterate over them. See https://book.amethyst.rs/stable/concepts/system.html
-        world
-            .create_entity()
-            .with(sprite.clone())
-            .with(transform)
-            .build();
-    }
+    world
+        .create_entity()
+        .with(sprites[0].clone())
+        .with(Player::new(3.))
+        .with(transform)
+        .build();
 }

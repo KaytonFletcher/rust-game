@@ -1,0 +1,235 @@
+(
+    texture_width: 6720,
+    texture_height: 420,
+    sprites: [
+        (
+            x: 0,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 84,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 168,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 252,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 336,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 420
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 504,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 588,
+            y: 0,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 0,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 84,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 168,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 252,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 336,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 420
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 504,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 588,
+            y: 84,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 0,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 84,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 168,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 252,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 336,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 420
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 504,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 588,
+            y: 168,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 0,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 84,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 168,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 252,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 336,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 420
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 504,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 588,
+            y: 252,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 0,
+            y: 336,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 84,
+            y: 336,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 168,
+            y: 336,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 252,
+            y: 336,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 336,
+            y: 336,
+            width: 84,
+            height: 84,
+        ),
+        (
+            x: 420
+            y: 336,
+            width: 84,
+            height: 84,
+        ),
+        
+    ]
+)
