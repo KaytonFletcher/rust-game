@@ -1,19 +1,27 @@
 use amethyst::{
+    assets::{Handle, Prefab},
     core::Transform,
     prelude::{Builder, World, WorldExt},
-    renderer::SpriteRender,
     window::ScreenDimensions,
 };
 
-use crate::components::Player;
+use crate::components::{animation, Player};
 
-pub fn init_player(world: &mut World, sprites: &[SpriteRender], dimensions: &ScreenDimensions) {
+pub fn init_player(
+    world: &mut World,
+    prefab: Handle<Prefab<animation::AnimationPrefabData>>,
+    dimensions: &ScreenDimensions,
+) {
     let mut transform = Transform::default();
     transform.set_translation_xyz(dimensions.width() * 0.5, dimensions.height() * 0.5, 0.);
 
     world
         .create_entity()
-        .with(sprites[0].clone())
+        .with(animation::Animation::new(
+            animation::AnimationId::Idle,
+            vec![animation::AnimationId::Idle, animation::AnimationId::Move],
+        ))
+        .with(prefab)
         .with(Player::new())
         .with(transform)
         .build();

@@ -12,7 +12,7 @@ pub enum PlayerState {
 
 impl Default for PlayerState {
     fn default() -> Self {
-        PlayerState::Idling
+        Self::Idling
     }
 }
 
@@ -27,7 +27,7 @@ pub struct Player {
 
 impl Player {
     pub fn new() -> Self {
-        Player {
+        Self {
             state: PlayerState::default(),
             speed: PLAYER_SPEED,
             width: PLAYER_WIDTH,
