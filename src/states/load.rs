@@ -1,41 +1,19 @@
 use amethyst::{
     assets::{AssetStorage, Loader},
     core::transform::Transform,
-    ecs::{Component, DenseVecStorage },
     input::{get_key, is_close_requested, is_key_down, VirtualKeyCode},
     prelude::*,
     renderer::{Camera, ImageFormat, SpriteRender, SpriteSheet, SpriteSheetFormat, Texture},
     window::ScreenDimensions,
 };
 
-use log::info;
+use crate::{
+    entities::init_player
+};
 
-pub const PLAYER_HEIGHT: f32 = 40.0;
-pub const PLAYER_WIDTH: f32 = 40.0;
+pub struct LoadState;
 
-pub struct Player {
-    pub speed: f32, 
-    pub width: f32,
-    pub height: f32,
-}
-
-impl Player {
-    fn new(speed: f32) -> Player {
-        Player {
-            speed,
-            width: PLAYER_WIDTH,
-            height: PLAYER_HEIGHT,
-      }
-    }
-}
-
-impl Component for Player {
-    type Storage = DenseVecStorage<Self>;
-}
-
-pub struct MyState;
-
-impl SimpleState for MyState {
+impl SimpleState for LoadState {
     // On start will run when this state is initialized. For more
     // state lifecycle hooks, see:
     // https://book.amethyst.rs/stable/concepts/state.html#life-cycle
@@ -49,8 +27,6 @@ impl SimpleState for MyState {
 
         // Place the camera
         init_camera(world, &dimensions);
-
-        world.register::<Player>();
 
         // Load our sprites and display them
         let sprites = load_sprites(world);
@@ -72,7 +48,7 @@ impl SimpleState for MyState {
 
             // Listen to any key events
             if let Some(event) = get_key(&event) {
-                info!("handling key event: {:?}", event);
+                println!("handling key event: {:?}", event);
             }
 
             // If you're looking for a more sophisticated event handling solution,
@@ -106,7 +82,7 @@ fn load_sprites(world: &mut World) -> Vec<SpriteRender> {
         let loader = world.read_resource::<Loader>();
         let texture_storage = world.read_resource::<AssetStorage<Texture>>();
         loader.load(
-            "sprites/logo.png",
+            "sprites/knight/knight.png",
             ImageFormat::default(),
             (),
             &texture_storage,
@@ -119,7 +95,7 @@ fn load_sprites(world: &mut World) -> Vec<SpriteRender> {
         let loader = world.read_resource::<Loader>();
         let sheet_storage = world.read_resource::<AssetStorage<SpriteSheet>>();
         loader.load(
-            "sprites/logo.ron",
+            "sprites/knight/knight.ron",
             SpriteSheetFormat(texture_handle),
             (),
             &sheet_storage,
@@ -137,14 +113,3 @@ fn load_sprites(world: &mut World) -> Vec<SpriteRender> {
         .collect()
 }
 
-fn init_player(world: &mut World, sprites: &[SpriteRender], dimensions: &ScreenDimensions) {
-    let mut transform = Transform::default();
-    transform.set_translation_xyz(dimensions.width() * 0.5, dimensions.height() * 0.5, 0.);
-
-    world
-        .create_entity()
-        .with(sprites[0].clone())
-        .with(Player::new(3.))
-        .with(transform)
-        .build();
-}

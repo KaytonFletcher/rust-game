@@ -1,5 +1,5 @@
-(
-    texture_width: 6720,
+List ((
+    texture_width: 672,
     texture_height: 420,
     sprites: [
         (
@@ -33,7 +33,7 @@
             height: 84,
         ),
         (
-            x: 420
+            x: 420,
             y: 0,
             width: 84,
             height: 84,
@@ -81,7 +81,7 @@
             height: 84,
         ),
         (
-            x: 420
+            x: 420,
             y: 84,
             width: 84,
             height: 84,
@@ -129,7 +129,7 @@
             height: 84,
         ),
         (
-            x: 420
+            x: 420,
             y: 168,
             width: 84,
             height: 84,
@@ -177,7 +177,7 @@
             height: 84,
         ),
         (
-            x: 420
+            x: 420,
             y: 252,
             width: 84,
             height: 84,
@@ -225,11 +225,10 @@
             height: 84,
         ),
         (
-            x: 420
+            x: 420,
             y: 336,
             width: 84,
             height: 84,
-        ),
-        
+        )
     ]
-)
+))

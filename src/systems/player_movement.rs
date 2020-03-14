@@ -3,7 +3,7 @@ use amethyst::derive::SystemDesc;
 use amethyst::ecs::{Read, Join, ReadStorage, System, SystemData, World, WriteStorage};
 use amethyst::input::{InputHandler, StringBindings};
 
-use crate::state::Player;
+use crate::components::Player;
 
 #[derive(SystemDesc)]
 pub struct PlayerSystem;
