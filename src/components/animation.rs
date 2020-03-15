@@ -14,7 +14,10 @@ use serde::{Deserialize, Serialize};
 /// animation to play.
 #[derive(Clone, Copy, Debug, Deserialize, Eq, Hash, PartialEq, PartialOrd, Serialize)]
 pub enum AnimationId {
-    Move,
+    MoveLeft,
+    MoveRight,
+    MoveUp,
+    MoveDown,
     Idle,
 }
 

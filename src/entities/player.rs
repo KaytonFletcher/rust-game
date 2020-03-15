@@ -19,7 +19,8 @@ pub fn init_player(
         .create_entity()
         .with(animation::Animation::new(
             animation::AnimationId::Idle,
-            vec![animation::AnimationId::Idle, animation::AnimationId::Move],
+            vec![animation::AnimationId::Idle, animation::AnimationId::MoveLeft,
+            animation::AnimationId::MoveRight, animation::AnimationId::MoveUp, animation::AnimationId::MoveDown],
         ))
         .with(prefab)
         .with(Player::new())

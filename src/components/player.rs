@@ -5,9 +5,18 @@ const PLAYER_WIDTH: f32 = 40.0;
 const PLAYER_SPEED: f32 = 4.0;
 
 #[derive(Eq, Hash, PartialEq, Clone, Copy)]
+pub enum Direction {
+    Left,
+    Right,
+    Up,
+    Down
+}
+
+
+#[derive(Eq, Hash, PartialEq, Clone, Copy)]
 pub enum PlayerState {
     Idling,
-    Running,
+    Running(Direction),
 }
 
 impl Default for PlayerState {

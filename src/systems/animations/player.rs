@@ -1,12 +1,10 @@
 use amethyst::{
-    animation::{
-        get_animation_set, AnimationCommand, AnimationControlSet, AnimationSet, EndControl,
-    },
+    animation::AnimationControlSet,
     ecs::{Entities, Join, ReadStorage, System, WriteStorage},
     renderer::SpriteRender,
 };
 
-use crate::components::{animation, Player, PlayerState};
+use crate::components::{animation, Direction, Player, PlayerState};
 
 #[derive(Default)]
 pub struct PlayerAnimationSystem;
@@ -31,7 +29,12 @@ impl<'s> System<'s> for PlayerAnimationSystem {
             .join()
         {
             let new_animation_id = match marine.state {
-                PlayerState::Running => animation::AnimationId::Move,
+                PlayerState::Running(direction) => match direction {
+                    Direction::Left => animation::AnimationId::MoveLeft,
+                    Direction::Right => animation::AnimationId::MoveRight,
+                    Direction::Up => animation::AnimationId::MoveUp,
+                    Direction::Down => animation::AnimationId::MoveDown,
+                },
                 _ => animation::AnimationId::Idle,
             };
 
@@ -40,9 +43,7 @@ impl<'s> System<'s> for PlayerAnimationSystem {
             if animation.current != new_animation_id {
                 println!(
                     "Updating animation for entity: {:?} from={:?}, to={:?}",
-                    entity,
-                    animation.current,
-                    new_animation_id
+                    entity, animation.current, new_animation_id
                 );
 
                 animation_control_set.abort(animation.current);
@@ -50,9 +51,6 @@ impl<'s> System<'s> for PlayerAnimationSystem {
 
                 animation.current = new_animation_id;
             }
-            // } else if new_animation_id == anAnimationId::Die {
-            //     animation.show = false;
-            // }
         }
     }
 }
