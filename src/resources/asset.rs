@@ -2,8 +2,7 @@ use std::collections::HashMap;
 
 use amethyst::{
     assets::{Handle, Prefab, PrefabLoader, ProgressCounter, RonFormat},
-    ecs::prelude::{ World, WorldExt } ,
-    renderer::{ sprite::{SpriteSheetHandle} },
+    ecs::prelude::World
 };
 
 use crate::components::animation::AnimationPrefabData;
@@ -13,20 +12,20 @@ pub enum AssetType {
     Player
 }
 
-#[derive(Default)]
-pub struct SpriteSheetList {
-    sprite_sheets: HashMap<AssetType, SpriteSheetHandle>,
-}
+// #[derive(Default)]
+// pub struct SpriteSheetList {
+//     sprite_sheets: HashMap<AssetType, SpriteSheetHandle>,
+// }
 
-impl SpriteSheetList {
-    pub fn insert(&mut self, asset_type: AssetType, sprite_sheet_handle: SpriteSheetHandle) {
-        self.sprite_sheets.insert(asset_type, sprite_sheet_handle);
-    }
+// impl SpriteSheetList {
+//     pub fn insert(&mut self, asset_type: AssetType, sprite_sheet_handle: SpriteSheetHandle) {
+//         self.sprite_sheets.insert(asset_type, sprite_sheet_handle);
+//     }
 
-    pub fn get(&self, asset_type: AssetType) -> Option<&SpriteSheetHandle> {
-        self.sprite_sheets.get(&asset_type)
-    }
-}
+//     pub fn get(&self, asset_type: AssetType) -> Option<&SpriteSheetHandle> {
+//         self.sprite_sheets.get(&asset_type)
+//     }
+// }
 
 #[derive(Default)]
 pub struct PrefabList {
@@ -49,13 +48,13 @@ impl PrefabList {
 
 /// Loads `SpriteSheetHandle`s for all the assets in the `AssetType` list into the `world`
 pub fn load_assets(world: &mut World, asset_type_list: Vec<AssetType>) -> ProgressCounter {
-    let mut sprite_sheet_list = SpriteSheetList::default();
+    //let mut sprite_sheet_list = SpriteSheetList::default();
     let mut prefab_list = PrefabList::default();
     let mut progress_counter = ProgressCounter::new();
 
     for &asset_type in asset_type_list.iter() {
-        let (texture_path, ron_path) = match asset_type {
-            AssetType::Player => ("sprites/knight/knight.png", "sprites/knight/knight.ron"),
+        let ron_path = match asset_type {
+            AssetType::Player => "sprites/knight/knight.ron",
         };
 
         match asset_type {
@@ -67,7 +66,7 @@ pub fn load_assets(world: &mut World, asset_type_list: Vec<AssetType>) -> Progre
         };
     }
     // world.add_resource(sprite_sheet_list);
-    world.add_resource(prefab_list);
+    world.insert(prefab_list);
     progress_counter
 }
 
